@@ -35,8 +35,12 @@ enum {
     LET_ELT,
     GRT_EGT,
     OR_EOR,
+    DCO_EDC,
     SAR_ESA,
     HAS_SQO,
+    Z_J,
+    P_Q,
+    SQO_DQO,
     TD_CODE_END 
 };
 
@@ -71,8 +75,12 @@ enum {
 #define TD_PLUS TD(PLU_EPL)
 #define TD_LT TD(LET_ELT)
 #define TD_GT TD(GRT_EGT)
+#define TD_DCOL TD(DCO_EDC)
 #define TD_SARR TD(SAR_ESA)
 #define TD_HASH TD(HAS_SQO)
+#define TD_ZJ TD(Z_J)
+#define TD_PQ TD(P_Q)
+#define TD_QUOT TD(SQO_DQO)
 
 // Custom keycodes
 
@@ -108,8 +116,8 @@ enum {
 
     MC_BTIC, MC_DQUO, MC_SQUO, MC_CIRC, MC_TILD, REPEAT, MC_EUR,
     MC_ENT, MC_TAB, MC_ESC, MC_ESCC, MC_NSEN, MC_CANC, TG_NUMC, MC_EXLM, MC_QUES,
-    MC_ESAV, MC_SENT, MC_CUR, MC_CURS, MC_SAR, MC_DEQ, MC_NEQ, MC_BRAC,
-    MC_DAND, MC_DPIP, MC_OESC, MC_SOES, MC_LTGT, MC_EPA, MC_SEC,
+    MC_ESAV, MC_SENT, MC_CUR, MC_CURS, MC_DCOL, MC_SAR, MC_DEQ, MC_NEQ, MC_BRAC,
+    MC_DAND, MC_DPIP, MC_OESC, MC_SOES, MC_LTGT, MC_VIS, MC_EPA, MC_SEC,
 
     // End macros that can be shifted
     SFT_MACRO_END,
