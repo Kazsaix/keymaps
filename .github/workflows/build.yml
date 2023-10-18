@@ -25,8 +25,11 @@ jobs:
     - name: Checkout qmk userspace
       uses: actions/checkout@v4
     
+    - name: Get QMK Source 
+      run: ./init_qmk.sh > qmk setup   
+
     - name: Setup QMK
-      run: ./init_qmk.sh      
+      run: qmk setup -h $QMK_HOME   
       
     - name: Compile
       run: >
