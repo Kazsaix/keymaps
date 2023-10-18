@@ -15,7 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         keyboard: [dailycraft/wings42/rev2]
-
+        keymaps: [rafaelromao]
+        
     steps:
     
     - name: Setup safe directory
@@ -29,10 +30,9 @@ jobs:
       
     - name: Compile
       run: >
-        qmk compile -j $(($(nproc) + 1))
-        -e SPLIT=${{ matrix.split }}
-        -e kb ${{ matrix.keyboard }}
-        - km rafaelromao
+        qmk compile 
+        -kb ${{ matrix.keyboard }}
+        - km ${{ matrix.keymap }}
 
     - name: Archive firmware
       uses: actions/upload-artifact@main
