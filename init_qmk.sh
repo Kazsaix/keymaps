@@ -6,6 +6,7 @@ USER_SPACE="$QMK_HOME/users"
 HANDWIRED="keyboards/handwired"
 BM40="keyboards/kprepublic/bm40hsrgb/keymaps"
 MJ64="keyboards/melgeek/mj64/keymaps"
+WINGS42R2="keyboards/dailycraft/wings42/rev2/keymaps"
 
 if [[ ! -d "$QMK_HOME" ]]
 then
@@ -35,6 +36,11 @@ if [[ ! -d "$QMK_HOME/$MJ64/clopes.le" ]]
 then
     echo "Creating MJ64 symbolic link..."
     ln -s "$KEYBOARD_HOME/src/qmk/$MJ64/clopes.le" "$QMK_HOME/$MJ64"
+fi
+if [[ ! -d "$QMK_HOME/$WINGS42R2/rafaelromao" ]]
+then
+    echo "Creating WINGS42R2 symbolic link..."
+    ln -s "$KEYBOARD_HOME/src/qmk/$WINGS42R2/rafaelromao" "$QMK_HOME/$WINGS42R2"
 fi
 echo "Checking out qmk v0.22.10..."
 cd $QMK_HOME
