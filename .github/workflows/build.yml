@@ -17,12 +17,16 @@ jobs:
         keyboard: [dailycraft/wings42/rev2]
 
     steps:
-    - name: Setip QMK
-      run: init_qmk.sh
-        
+    
     - name: Setup safe directory
       run: git config --global --add safe.directory '*'
 
+    - name: Checkout qmk userspace
+      uses: actions/checkout@v4
+    
+    - name: Setup QMK
+      run: ./init_qmk.sh      
+      
     - name: Compile
       run: >
         qmk compile -j $(($(nproc) + 1))
