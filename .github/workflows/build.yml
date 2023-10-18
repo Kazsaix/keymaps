@@ -1,0 +1,48 @@
+name: QMK Build
+on:
+  push:
+    paths-ignore:
+    - '**.md'
+    - '**.py'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Userspace build
+    runs-on: ubuntu-latest
+    container: qmkfm/qmk_cli
+    strategy:
+      fail-fast: false
+      matrix:
+        keyboard: [dailycraft/wings42/rev2]
+
+    steps:
+    - name: Setip QMK
+      run: init_qmk.sh
+        
+    - name: Setup safe directory
+      run: git config --global --add safe.directory '*'
+
+    - name: Compile
+      run: >
+        qmk compile -j $(($(nproc) + 1))
+        -e SPLIT=${{ matrix.split }}
+        -e kb ${{ matrix.keyboard }}
+        - km rafaelromao
+
+    - name: Archive firmware
+      uses: actions/upload-artifact@main
+      with:
+        retention-days: 60
+        name: ${{ matrix.keyboard }}
+        path: |
+          *.hex
+          *.bin
+          *.uf2
+
+  purge:
+    uses: filterpaper/scripts/.github/workflows/purge-workflow.yml@main
+    with:
+      purge-age: 5
+      delete-all-completed: false
+      delete-all-incomplete: false
