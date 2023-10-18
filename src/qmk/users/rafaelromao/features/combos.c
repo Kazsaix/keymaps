@@ -144,6 +144,44 @@ const uint16_t PROGMEM r_med_soe_combo[]  = {KC_VOLD, KC_VOLU, COMBO_END};
 
 const uint16_t PROGMEM secret_1_combo[] = {SEC_1, SEC_2, SEC_3, SEC_4, COMBO_END};
 
+// Hands Down Neu Vibranium P
+
+
+const uint16_t PROGMEM l_hdn_vp_num_combo[] = {LSFTT_S, LCTLT_N, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_cap_combo[] = {NAV_REP, LOW_SPC, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_npd_combo[] = {RAI_A2, MED_CAS, COMBO_END};
+
+// const uint16_t PROGMEM l_hdn_vp_z_combo[]   = {KC_W, KC_X, COMBO_END};
+// const uint16_t PROGMEM l_hdn_vp_q_combo[]   = {KC_X, KC_M, COMBO_END};
+// const uint16_t PROGMEM l_hdn_vp_v_combo[]   = {KC_C, LALTT_P, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_esc_combo[] = {KC_W, KC_X, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_esv_combo[] = {LOW_SPC, KC_W, KC_X, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_und_combo[] = {LOW_SPC, RALTT_F, KC_C, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_sav_combo[] = {LOW_SPC, LSFTT_N, LCTLT_S, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_usc_combo[] = {RALTT_F, KC_C, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_ful_combo[] = {LOW_SPC, LCTLT_S, LGUIT_T, COMBO_END};
+const uint16_t PROGMEM l_hdn_vp_fin_combo[] = {LOW_SPC, KC_C, LALTT_P, COMBO_END};
+
+const uint16_t PROGMEM r_hdn_vp_zj_combo[]   = {KC_L, KC_O, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_y_combo[]    = {RGUIT_R, RCTLT_A, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_pq_combo[]   = {RALTT_H, TD_COMM, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_x_combo[]    = {RCTLT_A, RSFTT_E, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_d_combo[]    = {RGUIT_R, RCTLT_A, RSFTT_E, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_cop_combo[]  = {RAI_A2, RGUIT_R, RCTLT_A, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_pas_combo[]  = {RAI_A2, RALTT_H, TD_COMM, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_ent_combo[]  = {RAI_A2, RCTLT_A, RSFTT_E, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_bsp_combo[]  = {KC_O, KC_U, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_tab_combo[]  = {RAI_A2, KC_O, KC_U, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_sal_combo[]  = {RAI_A2, TD_COMM, TD_DOT, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_sco_combo[]  = {TD_COMM, TD_DOT, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_scp_combo[]  = {RAI_A2, RGUIT_R, RCTLT_A, RSFTT_E, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_spa_combo[]  = {RAI_A2, RALTT_H, TD_COMM, TD_DOT, COMBO_END};
+const uint16_t PROGMEM r_hdn_vp_sent_combo[] = {RALTT_H, TD_COMM, TD_DOT, COMBO_END};
+
+
+
+
+
 combo_t key_combos[] = {
     COMBO(l_sym_cur_combo, MC_CURS),   COMBO(l_sym_par_combo, TD_PARN),  COMBO(l_sym_bra_combo, MC_BRAC),
     COMBO(l_sym_squo_combo, MC_SQUO),  COMBO(l_sym_dquo_combo, MC_DQUO), COMBO(l_sym_btic_combo, MC_BTIC),
@@ -179,7 +217,7 @@ combo_t key_combos[] = {
     COMBO(r_rom_tab_combo, KC_TAB),    COMBO(r_acc_tab_combo, KC_TAB),   COMBO(r_rom_zj_combo, TD_ZJ),
     COMBO(r_rom_x_combo, KC_X),        COMBO(r_rom_y_combo, KC_Y),       COMBO(r_sho_clo_combo, MC_CLOS),
     COMBO(r_sho_dyn_combo, TD_MACR),   COMBO(r_sho_joi_combo, MC_JOIN),  COMBO(r_sho_z0r_combo, MC_Z0R),
-    COMBO(secret_1_combo, MC_SECRET_1)};
+    COMBO(secret_1_combo, MC_SECRET_1),COMBO(l_hdn_vp_z_combo, KC_Z),    COMBO(l_hdn_vp_q_combo, KC_Q)};
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo->keycode) {

@@ -4,6 +4,7 @@
 #include "definitions/layers.h"
 #include "definitions/keycodes.h"
 #include "definitions/keymap_blocks.h"
+#include "definitions/keymap_blocks_kazsaix.h"
 #include "features/taphold.h"
 #include "features/tapdance.h"
 #include "features/smart_case.h"

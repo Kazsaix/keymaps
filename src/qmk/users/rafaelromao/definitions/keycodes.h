@@ -6,26 +6,26 @@
 
 // Tap dance codes
 
-enum { 
-    TD_CODE_START, 
-    ENT_END, 
-    SCL_END, 
-    BRT_LCR, 
-    BRT_RCR, 
-    BRT_PAR, 
-    BRT_OPA, 
-    BRT_CPA, 
-    BRT_OBR, 
-    BRT_CBR, 
-    DQU_FIN, 
-    EXL_EEX, 
-    AND_EAN, 
+enum {
+    TD_CODE_START,
+    ENT_END,
+    SCL_END,
+    BRT_LCR,
+    BRT_RCR,
+    BRT_PAR,
+    BRT_OPA,
+    BRT_CPA,
+    BRT_OBR,
+    BRT_CBR,
+    DQU_FIN,
+    EXL_EEX,
+    AND_EAN,
 #ifdef DYNAMIC_MACRO_ENABLE
-    REC_MAC, 
+    REC_MAC,
 #endif
-    COM_LEA, 
-    DOT_DOT, 
-    MIN_CUR, 
+    COM_LEA,
+    DOT_DOT,
+    MIN_CUR,
     COL_ECO,
     PER_DEG,
     SLS_BSL,
@@ -41,7 +41,7 @@ enum {
     Z_J,
     P_Q,
     SQO_DQO,
-    TD_CODE_END 
+    TD_CODE_END
 };
 
 // Tap dance keycodes
@@ -93,20 +93,20 @@ enum {
     OS_ACNT, TG_MAC, TG_WIN, TG_CASE, TG_ACNT, TG_CAPS,
 
     // Select Word/Line
-    MC_SELW, MC_SELL, 
-    
+    MC_SELW, MC_SELL,
+
     // Swapper
-    MC_MODP, MC_MODM, MC_SWLE, MC_SWRI, 
-    
+    MC_MODP, MC_MODM, MC_SWLE, MC_SWRI,
+
     // Begin macros that can be shifted
     SFT_MACRO_START,
 
     // Common shortcuts
-    MC_SELC, MC_SAVE, MC_UNDO, MC_COPY, MC_SCOP, MC_CLOS, 
+    MC_SELC, MC_SAVE, MC_UNDO, MC_COPY, MC_SCOP, MC_CLOS,
     MC_PAST, MC_SPAS, MC_LOCK, MC_FULL, MC_FIND, MC_Z0R,
 
     // IDE shortcuts
-    MC_QUIK, MC_AUCO, 
+    MC_QUIK, MC_AUCO,
     MC_QDOC, MC_FSYM, MC_RUN, MC_DBUG, MC_BUID,
     MC_PROJ, MC_RECE, MC_COMP, MC_FIUS, MC_REFC,
     MC_COMT, MC_JOIN,
@@ -128,12 +128,12 @@ enum {
     MC_GV_A, MC_CR_A, MC_TL_A, MC_SQ_A,
     MC_SQ_U, MC_CR_O, MC_SQ_O, MC_SQ_I,
     MC_CR_E, MC_TL_O, MC_SQ_C, MC_SQ_E,
-    MC_AO, MC_OE, MC_CAO, MC_COES, 
+    MC_AO, MC_OE, MC_CAO, MC_COES,
     MC_QU, MC_JA, MC_LH,
 
     // End macros for accented letters
     ALPHA_MACRO_END,
-    
+
     // End macros used to write text
     STR_MACRO_END,
 
@@ -235,5 +235,31 @@ enum {
 uint16_t extract_tapping_keycode(uint16_t keycode);
 bool is_string_macro_keycode(uint16_t keycode);
 bool is_shift_macro_keycode(uint16_t keycode);
+
+
+// Hands Down Neu Vibranium P Keycodes
+
+//Modtaps
+#define LSFTT_S LSFT_T(KC_S)
+#define RSFTT_I RSFT_T(KC_I)
+
+#define LCTLT_N LCTL_T(KC_N)
+#define RCTLT_E RCTL_T(KC_E)
+
+#define LALTT_D LALT_T(KC_D)
+#define RALTT_U RALT_T(KC_U)
+
+#define LGUIT_T LGUI_T(KC_T)
+#define RGUIT_A RGUI_T(KC_A)
+
+//Shortcuts
+#define SHO_KCC LT(_SHORTCUTS, KC_C)
+#define SHO_KCH LT(_SHORTCUTS, KC_H)
+
+#define SHO_KCH LT(_SHORTCUTS, KC_H)
+
+// Layer-taps
+#define LOW_R LT(_LOWER, KC_R)
+#define RAI_SPC  LT(_ALPHA2, KC_SPC) // Hold behavior is implemented in intercepted code
 
 // clang-format on
