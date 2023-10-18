@@ -2,16 +2,6 @@
 
 #include "rafaelromao.h"
 
-#if defined(ENCODER_MAP_ENABLE)
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [_ROMAK] =   { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
-    [_NUMPAD] =  { ENCODER_CCW_CW(RGB_HUD, RGB_HUI),           ENCODER_CCW_CW(RGB_SAD, RGB_SAI)  },
-    [_ACCENT] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI),           ENCODER_CCW_CW(RGB_SPD, RGB_SPI)  },
-    [_MACROS] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD),          ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
-};
-#endif
-
-
 #define LAYOUT_wrapper(...) LAYOUT_split_3x6_3_2(__VA_ARGS__)
 
 // clang-format off
@@ -193,25 +183,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // clang-format on
 
-// Encoder Map Setup
 
+// Encoder Map
+
+#if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][4] = {
     [_ALPHA1]         = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_NUMPAD]         = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_SHORTCUTS]      = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_NOMOD]          = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_ALPHA2]         = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_FIXED_ALPHA2]   = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_SHORTCUTS]      = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_SYMBOLS]        = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_LOWER]          = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_RAISE]          = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_SYMBOLS]        = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_FIXED_NAV]      = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_MEDIA]          = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_NAVIGATION]     = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_MEDIA]          = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_LOCK]           = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_SYSTEM]         = {ENCODER_CCW_CW(S(KC_PGUP), S(KC_PGDN)), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}};
+#endif
 
-// OLED Setup
+// Oled
 
 void clear_oled(void) {
     oled_write("                ", false);
@@ -224,18 +215,22 @@ void set_oled_by_layer(uint32_t layer) {
         return;
     }
     switch (layer) {
-        case _ROMAK:
+        case _ALPHA1:
+        case _NOMOD:
             oled_write("        ROMAK     ", false);
             break;
         case _NUMPAD:
             oled_write("        NUMPAD    ", false);
             break;
-        case _ACCENT:
-        case _FIXED_ACCENT:
-            oled_write("        ACCENT    ", false);
+        case _ALPHA2:
+        case _FIXED_ALPHA2:
+            oled_write("        ALPHA2    ", false);
             break;
-        case _MACROS:
-            oled_write("        MACROS    ", false);
+        case _SHORTCUTS:
+            oled_write("      SHORTCUTS   ", false);
+            break;
+        case _SYMBOLS:
+            oled_write("      SYMBOLS     ", false);
             break;
         case _LOWER:
             oled_write("        LOWER     ", false);
@@ -250,8 +245,8 @@ void set_oled_by_layer(uint32_t layer) {
         case _MEDIA:
             oled_write("        MEDIA     ", false);
             break;
-        case _MAINTENANCE:
-            oled_write("     MAINTENANCE  ", false);
+        case _SYSTEM:
+            oled_write("       SYSTEM     ", false);
             break;
         default:
             break;
@@ -288,8 +283,14 @@ void set_oled_text(void) {
     } else if (has_any_smart_case()) {
         oled_write("Smart Case", false);
     } else if (isShift || isCtrl || isAlt || isGui) {
+        if (isShift) {
+            oled_write("Shift ", false);
+        }
+        if (isCtrl) {
+            oled_write("Ctrl ", false);
+        }
         if (isGui) {
-            if (os.type == MACOS) {
+            if (is_macos()) {
                 oled_write("Cmd ", false);
             } else {
                 oled_write("Win ", false);
@@ -297,12 +298,6 @@ void set_oled_text(void) {
         }
         if (isAlt) {
             oled_write("Alt ", false);
-        }
-        if (isCtrl) {
-            oled_write("Ctrl ", false);
-        }
-        if (isShift) {
-            oled_write("Shift ", false);
         }
     } else {
         set_current_layer_oled();
